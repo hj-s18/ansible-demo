@@ -1,8 +1,35 @@
+# /etc/hosts : 네트워크 이름과 IP 주소 간 매핑 정보를 추가/수정하는 파일
+
+
+
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+# 127.0.0.1 : 루프백(Loopback) 주소 (로컬 컴퓨터 자신을 가리킴)
+# ::1 : IPv6에서의 루프백 주소
+# localhost localhost.localdomain localhost4 localhost4.localdomain4 : 이 IP에 매핑된 이름들
 
-172.16.0.200	docker	myregistry.com	mygitlab.com	mysonar.com	myjenkins.com
-172.16.0.201	controlplane
-172.16.0.202	node01
-172.16.0.203	node02
 
+
+172.16.0.100	docker	myregistry.com	mygitlab.com	mysonar.com	myjenkins.com
+# 172.16.0.100 : IP 주소를  도메인 이름 docker, myregistry.com, mygitlab.com, mysonar.com,	myjenkins.com 에 매핑
+# 로컬 환경에서 docker, myregistry.com, mygitlab.com, mysonar.com,	myjenkins.com으로 접속 시 이 IP 사용 가능
+
+172.16.0.101	servera controlplane
+# 172.16.0.101 : IP 주소를 servera, controlplane라는 이름으로 매핑
+# Kubernetes 클러스터의 controlplane node로 사용할 것임
+
+172.16.0.102	serverb node01
+# 172.16.0.102 IP 주소를 serverb, node01로 매핑
+# Kubernetes 클러스터의 1번째 워커 노드로 사용할 것임
+
+172.16.0.103	serverc node02
+# 172.16.0.103 IP 주소를 serverc와 node02로 매핑
+# Kubernetes 클러스터의 2번째 워커 노드로 사용할 것임
+
+
+
+# 이 설정 후에 다음 명령어로 dnsmasq 서비스 재시작 해줘야 함
+# systemctl restart dnsmasq
+  # dnsmasq 서비스 : 로컬 DNS 및 DHCP 역할을 수행할 수 있는 서비스
+  # DNS 설정 파일 또는 관련 구성 파일을 변경했을 때, 변경 사항을 반영하려면 이 서비스를 재시작해야 함
+  # DNS 설정 파일 또는 관련 구성 파일 例: /etc/hosts, /etc/dnsmasq.conf, /etc/resolv.conf 등
