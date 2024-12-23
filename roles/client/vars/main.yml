@@ -1,3 +1,21 @@
 ---
+# YAML 파일 시작
+
+
+
 # vars file for client
+
 KUBE_VERSION: 'v1.31.0'
+# KUBE_VERSION
+  # Kubernetes 클라이언트(kubectl)와 관련된 작업에서 사용할 Kubernetes 버전을 지정하는 변수
+  # Ansible Playbook이나 역할(role)에서 동적으로 참조되어 사용됨
+
+
+
+# KUBE_VERSION 변수를 한 곳에서 관리하여 Playbook이나 역할에서 이 버전을 사용하도록 설정
+# Kubernetes 버전을 업데이트하려면 이 파일의 변수만 수정하면 됨
+# Playbook이나 역할(role)을 수정하지 않아도 동일한 버전을 모든 관련 작업에 적용 가능
+# 例: /roles/client/tasks/main.yml 파일 
+  # url: https://dl.k8s.io/release/{{ KUBE_VERSION }}/bin/linux/amd64/kubectl
+  # kubectl 다운로드할 때 get_url 모듈에서 {{KUBE_VERSION}} 참조함
+  
