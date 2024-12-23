@@ -6,6 +6,8 @@ ansible all -a 'kubeadm reset -f'
 # ansible : Ansible 명령어로, 지정된 호스트 그룹에서 명령 실행함
 # all : 인벤토리 파일에 정의된 모든 호스트를 대상으로 작업 실행
   # all : 인벤토리의 모든 노드를 의미함
+  # 특정 그룹만 초기화하려면, all 대신 그룹 이름 사용하면 됨
+    # 例: ansible controlplanes -a 'kubeadm reset -f' : 컨트롤 플레인 노드만 초기화함
 # -a 'kubeadm reset -f' : 모든 대상 노드에서 실행할 명령 지정
   # kubeadm reset 
     # Kubernetes 클러스터의 모든 상태를 제거 => 기존 설정이나 데이터 복구 불가능
