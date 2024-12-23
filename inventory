@@ -1,10 +1,44 @@
 [controlplanes]
+# 컨트롤 플레인 노드 그룹 정의
+# Kubernetes 클러스터의 Control Plane node를 정의하는 그룹
+# Control Plane : Kubernetes에서 클러스터 관리를 담당하는 주요 구성 요소를 실행하는 node
+# 클러스터 관리를 담당하는 주요 구성 요소 : API 서버, 스케줄러 등
+
 controlplane  mgmt_nic=enp0s8
+# 호스트 이름: controlplane (controlplane node 정의)
+# 변수: mgmt_nic=enp0s8
+  # 이 노드를 enp0s8라는 NIC(Network Interface Card)를 사용해 관리되도록 설정
+
+
 
 [worker_nodes]
+# 워커 노드 그룹 정의
+# Kubernetes 클러스터의 Worker Nodes를 정의하는 그룹
+# Worker Node : 컨테이너 워크로드(Pod)를 실제로 실행하는 노드들
+
 node01
+# 호스트 이름 : node01 (worker node 중 첫 번째 노드)
+
 node02
+# 호스트 이름 : node02 (worker node 중 두 번째 노드)
+
+
 
 [cluster:children]
+# 클러스터 전체 그룹 정의
+# cluster라는 이름의 그룹을 정의
+# 이 그룹은 다른 하위 그룹(controlplanes, worker_nodes)을 포함함
+# children 키워드 : 그룹 안에 또 다른 그룹을 포함할 때 사용
+
 controlplanes
+# 클러스터 그룹에 컨트롤 플레인 노드 그룹을 포함함
+
 worker_nodes
+# 클러스터 그룹에 워커 노드 그룹을 포함함
+
+
+# 그룹 구조 사용 ⇒ 컨트롤 플레인과 워커 노드를 별도로 관리하거나 클러스터 전체를 한 번에 관리 가능
+# 그룹
+  # controlplanes : 컨트롤 플레인 노드
+  # worker_nodes : 워커 노드
+  # cluster : 컨트롤 플레인, 워커 노드를 포함한 클러스터 전체
