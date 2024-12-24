@@ -143,6 +143,10 @@ version = 2
 
     [plugins."io.containerd.grpc.v1.cri".registry]
       config_path = "/etc/containerd/certs.d"
+      # 컨테이너 런타임의 특정 인증서 관련 설정 경로 정의
+      # 컨테이너 런타임(Containerd)
+        # 컨테이너를 실행하고 관리하는 데 사용되는 도구
+        # 이미지 다운로드, 컨테이너 시작, 정지, 삭제하는 역할 담당
 
       [plugins."io.containerd.grpc.v1.cri".registry.auths]
 
